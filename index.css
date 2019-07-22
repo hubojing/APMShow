@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    font-size: 72px;
+    color: beige;
+}
+
+h2 {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    color: beige;
+}
+
+.btn {
+    background: url(btnbg.jpg);
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 10px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 15px;
+    border-radius: 35%;
+}
+
+.menu {
+    text-align: center;
+    margin-top: 35px;
+}
+
+body {
+    background: url(bg.jpg);
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.cannotselect {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}

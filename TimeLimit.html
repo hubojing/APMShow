@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>APM-Show</title>
+    <link rel="stylesheet" type="text/css" href="TimeLimit.css">
+</head>
+
+<body>
+    <h2 class="cannotselect">规则</h2>
+    <p class="cannotselect">在规定时间内（10s），以最快速度疯狂点击鼠标左键！</p>
+    <p class="result cannotselect" id="result"></p>
+
+    <button class="start cannotselect" onclick="play()" id="start">开始</button>
+
+
+    <button class="back cannotselect" onclick="window.location.href='index.html'" id="back">返回</button>
+    <!--<button class="button" onclick="play()" id="list">排行榜</button>-->
+
+    <script>
+        var time;
+        var j = 1;
+        var clickNum;
+        var num = 10; //总用时
+
+        function play() {
+            document.getElementById("result").style.display = "none";
+            document.getElementById("start").style.display = "none";
+            document.getElementById("time").style.display = "block";
+            document.getElementById("time").innerHTML = num + "秒";
+            time = setInterval(show, 1000);
+            clickNum = -1;
+            document.onclick = function() {
+                clickNum++;
+            }
+        }
+
+        function show() {
+            var tmp = num - j;
+            document.getElementById("time").innerHTML = tmp + "秒";
+
+            if (j == num) {
+                clearInterval(time);
+                time = null;
+                j = 0;
+
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = "结束！</br>点击次数：" + clickNum + "次";
+                document.getElementById("start").style.display = "block";
+                document.getElementById("time").style.display = "none";
+                num = 10;
+                j = 1;
+                return;
+            }
+            j++;
+        }
+    </script>
+    <p class="time cannotselect" id="time"></p>
+
+</body>
+
+</html>

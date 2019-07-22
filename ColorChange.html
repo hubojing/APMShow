@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>APM-Show</title>
+    <link rel="stylesheet" type="text/css" href="ColorChange.css">
+</head>
+
+<body>
+    <h2 class="cannotselect">规则</h2>
+    <p class="cannotselect">当颜色切换时，以最快速度在方框内点击一次鼠标左键！</p>
+    <button class="start cannotselect" onclick="play()" id="start">开始</button>
+    <div id=colordiv class="colordiv">
+    </div>
+    <div id=clickdiv class="clickdiv">
+        <p>鼠标点击这里！</p>
+    </div>
+    <p class="result cannotselect" id="result"></p>
+    <button class="back cannotselect" onclick="window.location.href='index.html'" id="back">返回</button>
+
+    <script>
+        var timeStart, timeEnd;
+        var timeid;
+
+        function play() {
+            document.getElementById("colordiv").style.display = "block";
+            document.getElementById("clickdiv").style.display = "block";
+            document.getElementById("result").style.display = "none";
+            document.getElementById("start").style.display = "none";
+            timeid = setTimeout(change, 2000);
+        }
+
+
+        function change() {
+            document.getElementById("colordiv").style.background = "goldenrod";
+            timeStart = Date.now();
+            var isChanged = true;
+
+            document.getElementById("clickdiv").onclick = function() {
+                if (isChanged == false) {
+                    return;
+                }
+                timeEnd = Date.now();
+                var time = timeEnd - timeStart;
+                document.getElementById("result").style.display = "block";
+                document.getElementById("colordiv").style.display = "none";
+                document.getElementById("clickdiv").style.display = "none";
+                document.getElementById("result").innerHTML = "本次结果：" + time + "ms";
+                clearTimeout(timeid);
+                document.getElementById("start").style.display = "block";
+                document.getElementById("colordiv").style.background = "paleturquoise";
+                isChanged = false;
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

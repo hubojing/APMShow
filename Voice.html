@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>APM-Show</title>
+    <link rel="stylesheet" type="text/css" href="Voice.css">
+</head>
+
+<body>
+    <div id="div">
+        <h2 class="cannotselect">规则</h2>
+        <p class="cannotselect">听到“滴”声后，以最快速度在方框内点击一次鼠标左键！</p>
+
+        <button class="start cannotselect" onclick="play()" id="start">开始</button>
+        <button class="back cannotselect" onclick="window.location.href='index.html'" id="back">返回</button>
+        <audio src='ding.mp3' style='display:none' id='audio'></audio>
+
+        <div id="clickdiv" class="clickdiv">
+            <p>鼠标点击这里！</p>
+        </div>
+
+        <script>
+            var timeStart, timeEnd;
+            var timeid;
+
+            function addVoice() {
+                timeStart = Date.now();
+                document.getElementById('audio').play();
+                var isVoicePlayed = true;
+                document.getElementById('clickdiv').onclick = function() {
+                    if (isVoicePlayed == false) {
+                        return;
+                    }
+                    showTime();
+                    isVoicePlayed = false;
+                }
+            }
+
+            function showTime() {
+                timeEnd = Date.now();
+                var time = timeEnd - timeStart;
+                document.getElementById("clickdiv").style.display = "none";
+                document.getElementById("result").style.display = "block";
+                document.getElementById("result").innerHTML = "本次结果：" + time + "ms";
+                clearTimeout(timeid);
+                document.getElementById("start").style.display = "block";
+            }
+
+            function play() {
+                clear();
+                timeid = setTimeout(addVoice, 2000);
+            }
+
+            function clear() {
+                document.getElementById("result").style.display = "none";
+                document.getElementById("start").style.display = "none";
+                document.getElementById("clickdiv").style.display = "block";
+            }
+        </script>
+
+        <p class="result cannotselect" id="result"></p>
+    </div>
+</body>
+
+</html>
